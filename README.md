@@ -47,7 +47,7 @@ Un e-commerce necesita entender **cómo evolucionan sus ventas, qué productos g
 - [x] ¿Cómo evolucionan las ventas y los pedidos mes a mes?
 - [x] ¿Qué categorías de productos generan más ingresos?
 - [x] ¿Cuál es el ticket promedio y cómo ha cambiado?
-- [ ] ¿Cuál es la tasa de recompra y quiénes son los mejores clientes (RFM)?
+- [x] ¿Cuál es la tasa de recompra y quiénes son los mejores clientes (RFM)?
 - [ ] ¿Cuánto tardan las entregas y cómo afectan la calificación del cliente?
 
 ## 5. Conjunto de datos
@@ -104,8 +104,10 @@ olist-ecommerce-analysis/
 │   ├── 01_exploracion.sql
 │   ├── 02_ventas.sql
 │   ├── 03_variacion_mensual.sql
-│   └── 04_categorias.sql
-│   └── 05_ticket_promedio.sql
+│   ├── 04_categorias.sql
+│   ├── 05_ticket_promedio.sql
+│   └── 06_recompra.sql
+
 ├── notebooks/         # Análisis y gráficos en Python
 ├── dashboard/         # Archivo de Power BI
 ├── docs/images/       # Capturas para este README
@@ -187,7 +189,26 @@ Consulta: [`sql/05_ticket_promedio.sql`](sql/05_ticket_promedio.sql)
 
 ### 10.4 Clientes y recompra
 
-🚧 En desarrollo. Avance: la diferencia entre `customer_id` y `customer_unique_id` sugiere una **tasa de recompra baja, de alrededor del 3 %**; se validará con una consulta específica.
+La recompra se mide con `customer_unique_id` (la persona real), sobre pedidos
+`delivered` entre enero de 2017 y agosto de 2018.
+
+| Pedidos por cliente | Clientes | % |
+|---|---|---|
+| 1 | 90,315 | 97.0 % |
+| 2 | 2,562 | 2.8 % |
+| 3 | 180 | 0.2 % |
+| 4 o más | 47 | < 0.1 % |
+
+- De **93,104 clientes**, solo **2,789 (3.0 %)** compraron más de una vez.
+- Entre los clientes recurrentes, el 92 % compró exactamente dos veces.
+- Un cliente llegó a 15 pedidos y otro a 9; podrían ser revendedores o compradores
+  empresariales (hipótesis a validar).
+- **Implicación:** el crecimiento depende de captar clientes nuevos; la retención es
+  la principal oportunidad de mejora.
+- **Limitación:** los clientes que compraron cerca del final del periodo tuvieron
+  menos tiempo para volver, por lo que la tasa podría estar levemente subestimada.
+
+Consulta: [`sql/06_recompra.sql`](sql/06_recompra.sql)
 
 ### 10.5 Logística y satisfacción
 
@@ -223,7 +244,7 @@ Consulta: [`sql/05_ticket_promedio.sql`](sql/05_ticket_promedio.sql)
 
 - [x] Categorías más vendidas y concentración de ingresos
 - [x] Ticket promedio y su evolución
-- [ ] Tasa de recompra y segmentación RFM
+- [x] Tasa de recompra y segmentación RFM
 - [ ] Análisis de tiempos de entrega y calificaciones
 - [ ] Análisis en Python con gráficos (notebooks)
 - [ ] Dashboard en Power BI
