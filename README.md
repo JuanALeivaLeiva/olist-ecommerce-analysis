@@ -111,6 +111,7 @@ olist-ecommerce-analysis/
 │   └── 08_logistica.sql
 
 ├── notebooks/         # Análisis y gráficos en Python
+│   └── 01_analisis_ventas.ipynb
 ├── dashboard/         # Archivo de Power BI
 ├── docs/images/       # Capturas para este README
 ├── requirements.txt
@@ -137,6 +138,8 @@ Antes de analizar, se revisó la consistencia de los datos con consultas SQL (`s
 
 ### 10.1 Evolución de las ventas
 
+![Ventas mensuales](docs/images/ventas_mensuales.png)
+
 - Crecimiento sostenido durante 2017: de **~112 mil** en enero a **~988 mil** en noviembre.
 - **Noviembre de 2017 es el pico del periodo** (+52.4 % frente a octubre), en línea con la temporada de Black Friday. Es también el mayor aumento en monto (unos 340 mil más que octubre).
 - **Diciembre de 2017 baja 26.5 %**, una caída estacional posterior al pico: aun así supera las ventas de octubre.
@@ -147,6 +150,8 @@ Consultas: [`sql/02_ventas.sql`](sql/02_ventas.sql) (ventas mensuales) y
 [`sql/03_variacion_mensual.sql`](sql/03_variacion_mensual.sql) (variación frente al mes anterior).
 
 ### 10.2 Categorías más vendidas
+
+![Top 10 categorías](docs/images/top_categorias.png)
 
 Análisis de pedidos `delivered` entre enero de 2017 y agosto de 2018.
 
@@ -245,6 +250,8 @@ Consulta: [`sql/07_rfm.sql`](sql/07_rfm.sql)
 
 ### 10.6 Logística y satisfacción
 
+![Calificación según puntualidad](docs/images/puntualidad_calificacion.png)
+
 Se comparó la puntualidad de la entrega (fecha real frente a la estimada) con la
 calificación del cliente (1 a 5). Se consideran los 95,560 pedidos entregados
 que tienen reseña.
@@ -300,7 +307,7 @@ Consulta: [`sql/08_logistica.sql`](sql/08_logistica.sql)
 - [x] Ticket promedio y su evolución
 - [x] Tasa de recompra y segmentación RFM
 - [x] Análisis de tiempos de entrega y calificaciones
-- [ ] Análisis en Python con gráficos (notebooks)
+- [x] Análisis en Python con gráficos (notebooks)
 - [ ] Dashboard en Power BI
 - [ ] Conclusiones y recomendaciones de negocio
 
