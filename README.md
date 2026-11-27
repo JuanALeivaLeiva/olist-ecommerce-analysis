@@ -45,8 +45,8 @@ Un e-commerce necesita entender **cómo evolucionan sus ventas, qué productos g
 ## 4. Preguntas de negocio
 
 - [x] ¿Cómo evolucionan las ventas y los pedidos mes a mes?
-- [ ] ¿Qué categorías de productos generan más ingresos?
-- [ ] ¿Cuál es el ticket promedio y cómo ha cambiado?
+- [x] ¿Qué categorías de productos generan más ingresos?
+- [x] ¿Cuál es el ticket promedio y cómo ha cambiado?
 - [ ] ¿Cuál es la tasa de recompra y quiénes son los mejores clientes (RFM)?
 - [ ] ¿Cuánto tardan las entregas y cómo afectan la calificación del cliente?
 
@@ -105,6 +105,7 @@ olist-ecommerce-analysis/
 │   ├── 02_ventas.sql
 │   ├── 03_variacion_mensual.sql
 │   └── 04_categorias.sql
+│   └── 05_ticket_promedio.sql
 ├── notebooks/         # Análisis y gráficos en Python
 ├── dashboard/         # Archivo de Power BI
 ├── docs/images/       # Capturas para este README
@@ -143,13 +144,52 @@ Consultas: [`sql/02_ventas.sql`](sql/02_ventas.sql) (ventas mensuales) y
 
 ### 10.2 Categorías más vendidas
 
-🚧 En desarrollo.
+Análisis de pedidos `delivered` entre enero de 2017 y agosto de 2018.
 
-### 10.3 Clientes y recompra
+| Categoría | Unidades | Ventas (R$) | % del total |
+|---|---|---|---|
+| health_beauty | 9,422 | 1,229,558 | 9.3 % |
+| watches_gifts | 5,855 | 1,163,466 | 8.8 % |
+| bed_bath_table | 10,945 | 1,022,956 | 7.8 % |
+| sports_leisure | 8,414 | 952,840 | 7.2 % |
+| computers_accessories | 7,632 | 888,056 | 6.7 % |
+| furniture_decor | 8,095 | 706,237 | 5.4 % |
+| housewares | 6,783 | 614,342 | 4.7 % |
+| cool_stuff | 3,711 | 609,158 | 4.6 % |
+| auto | 4,132 | 577,838 | 4.4 % |
+| garden_tools | 4,263 | 469,135 | 3.6 % |
+
+- **Ingresos diversificados:** ninguna categoría supera el 10 %; las 5 primeras
+  concentran ~39.8 % de las ventas y las 10 primeras ~62.5 %.
+- **Volumen vs. valor:** `bed_bath_table` lidera en unidades pero es 3.ª en
+  ventas por su precio promedio bajo (~R$ 93), mientras que `watches_gifts`
+  es 2.ª en ventas con menos unidades gracias a su precio alto (~R$ 199).
+- **Categorías de bajo ticket:** `furniture_decor` y `telephony` (~R$ 70)
+  aportan menos ingresos de lo que sugiere su volumen.
+
+Consulta: [`sql/04_categorias.sql`](sql/04_categorias.sql)
+
+### 10.3 Ticket promedio
+
+El **ticket promedio** es el gasto por pedido (ventas ÷ pedidos entregados).
+
+- Se mueve entre ~R$ 124 (julio de 2017) y ~R$ 149 (enero de 2017), sin una
+  tendencia clara. En el periodo completo ronda los R$ [valor de tu consulta global].
+- Cada pedido contiene en promedio apenas ~1.1 productos (entre 1.11 y 1.16 en casi
+  todos los meses): la gran mayoría de los pedidos son de un solo producto.
+- El crecimiento de las ventas se explica por **más pedidos, no por pedidos más
+  grandes**: en noviembre de 2017 los pedidos subieron ~63 % frente a octubre,
+  mientras el ticket bajó ~6 % (de R$ 144.8 a R$ 135.5).
+- **Oportunidad (hipótesis a evaluar):** al ser pedidos casi siempre de un solo
+  producto, hay espacio para estrategias de venta cruzada o paquetes de productos.
+
+Consulta: [`sql/05_ticket_promedio.sql`](sql/05_ticket_promedio.sql)
+
+### 10.4 Clientes y recompra
 
 🚧 En desarrollo. Avance: la diferencia entre `customer_id` y `customer_unique_id` sugiere una **tasa de recompra baja, de alrededor del 3 %**; se validará con una consulta específica.
 
-### 10.4 Logística y satisfacción
+### 10.5 Logística y satisfacción
 
 🚧 Pendiente.
 
@@ -181,8 +221,8 @@ Consultas: [`sql/02_ventas.sql`](sql/02_ventas.sql) (ventas mensuales) y
 
 ## 13. Próximos pasos
 
-- [ ] Categorías más vendidas y concentración de ingresos
-- [ ] Ticket promedio y su evolución
+- [x] Categorías más vendidas y concentración de ingresos
+- [x] Ticket promedio y su evolución
 - [ ] Tasa de recompra y segmentación RFM
 - [ ] Análisis de tiempos de entrega y calificaciones
 - [ ] Análisis en Python con gráficos (notebooks)
@@ -193,3 +233,4 @@ Consultas: [`sql/02_ventas.sql`](sql/02_ventas.sql) (ventas mensuales) y
 
 **[Juan Alexis Leiva Leiva]** · Aspirante a Analista de Datos e Ingeniero de Datos
 [LinkedIn](https://www.linkedin.com/in/leiva-leiva-juan-alexis/) · [GitHub](https://github.com/JuanALeivaLeiva) · [Correo](leivaleivaja26@gmail.com)
+
