@@ -138,7 +138,8 @@ Antes de analizar, se revisó la consistencia de los datos con consultas SQL (`s
 - En **2018 las ventas se estabilizan en una meseta alta** (entre ~826 mil y ~978 mil mensuales). Mayo de 2018 es el segundo mes con más ventas del periodo.
 - El primer descenso claro de 2018 aparece en **junio (−12.4 %)**, y luego las ventas se mantienen alrededor de 840 a 870 mil.
 
-Consulta: [`sql/03_variacion_mensual.sql`](sql/03_variacion_mensual.sql)
+Consultas: [`sql/02_ventas.sql`](sql/02_ventas.sql) (ventas mensuales) y
+[`sql/03_variacion_mensual.sql`](sql/03_variacion_mensual.sql) (variación frente al mes anterior).
 
 ### 10.2 Categorías más vendidas
 
@@ -162,7 +163,7 @@ Consulta: [`sql/03_variacion_mensual.sql`](sql/03_variacion_mensual.sql)
 
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/TU_USUARIO/olist-ecommerce-analysis.git
+   git clone https://github.com/JuanAleivaLeiva/olist-ecommerce-analysis.git
    cd olist-ecommerce-analysis
    ```
 2. Crea y activa un entorno virtual e instala las dependencias (PowerShell):
@@ -190,5 +191,5 @@ Consulta: [`sql/03_variacion_mensual.sql`](sql/03_variacion_mensual.sql)
 
 ## 14. Autor
 
-**[Tu nombre]** · Aspirante a Analista de Datos
-[LinkedIn](https://www.linkedin.com/in/TU_PERFIL) · [GitHub](https://github.com/TU_USUARIO) · [Correo](mailto:tu_correo@ejemplo.com)
+**[Juan Alexis Leiva Leiva]** · Aspirante a Analista de Datos e Ingeniero de Datos
+[LinkedIn](https://www.linkedin.com/in/leiva-leiva-juan-alexis/) · [GitHub](https://github.com/JuanALeivaLeiva) · [Correo](leivaleivaja26@gmail.com)
