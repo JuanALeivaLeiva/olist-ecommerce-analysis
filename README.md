@@ -228,6 +228,8 @@ Las reglas se evalúan en este orden: Campeones (R ≥ 4 y M ≥ 4), Recurrentes
 (2 o más pedidos), Alto valor con una compra (M ≥ 4), Nuevos recientes (R ≥ 4),
 Inactivos de bajo valor (R ≤ 2 y M ≤ 2) y Ocasionales (el resto).
 
+![Peso de cada segmento RFM en clientes y ventas](docs/images/segmentos_rfm.png)
+
 | Segmento | Clientes | % ventas | Gasto promedio | Recencia promedio |
 |---|---|---|---|---|
 | Alto valor, una compra | 20,677 | 42.0 % | R$ 267 | 335 días |
