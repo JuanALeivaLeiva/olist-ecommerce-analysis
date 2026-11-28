@@ -88,18 +88,21 @@ flowchart LR
     B --> C[(Base de datos SQLite)]
     C --> D[Consultas SQL]
     C --> E[Notebooks de Python]
-    D --> F[Dashboard en Power BI]
-    E --> F
-    F --> G[Hallazgos y recomendaciones]
+    C --> H[Script de exportación a CSV]
+    H --> F[Dashboard en Power BI]
+    D --> G[Hallazgos y recomendaciones]
+    E --> G
+    F --> G
 ```
 
 ## 8. Estructura del repositorio
 
 ```
 olist-ecommerce-analysis/
-├── data/              # CSV originales (no versionados)
+├── data/                        # CSV originales (no versionados)
 ├── scripts/
-│   └── load_data.py   # Carga los CSV a SQLite
+│   ├── load_data.py             # Carga los CSV a SQLite
+│   └── export_for_powerbi.py    # Exporta tablas limpias para Power BI
 ├── sql/
 │   ├── 01_exploracion.sql
 │   ├── 02_ventas.sql
@@ -109,11 +112,12 @@ olist-ecommerce-analysis/
 │   ├── 06_recompra.sql
 │   ├── 07_rfm.sql
 │   └── 08_logistica.sql
-
-├── notebooks/         # Análisis y gráficos en Python
+├── notebooks/
 │   └── 01_analisis_ventas.ipynb
-├── dashboard/         # Archivo de Power BI
-├── docs/images/       # Capturas para este README
+├── dashboard/
+│   ├── olist_dashboard.pbix
+│   └── data/                    # CSV para Power BI (no versionados)
+├── docs/images/                 # Gráficos y capturas de este README
 ├── requirements.txt
 ├── .gitignore
 └── README.md
@@ -279,9 +283,21 @@ Consulta: [`sql/08_logistica.sql`](sql/08_logistica.sql)
 
 ## 11. Dashboard
 
-🚧 Pendiente. Aquí se incluirá una captura del dashboard de Power BI.
+Dashboard interactivo en **Power BI Desktop**
+([`dashboard/olist_dashboard.pbix`](dashboard/olist_dashboard.pbix)), construido
+sobre un **modelo en estrella**: tablas de hechos `ventas` y `pedidos`, y
+dimensiones `calendario` y `clientes` (con su segmento RFM). Las medidas están
+escritas en DAX.
 
-<!-- ![Dashboard](docs/images/dashboard.png) -->
+| Página | Contenido | Estado |
+|---|---|---|
+| 1. Resumen de ventas | Indicadores clave, ventas mensuales con el mes pico resaltado y top 10 de categorías, con filtros por año, categoría y estado | ✅ Lista |
+| 2. Clientes | Segmentos RFM y su peso en las ventas | 🚧 En desarrollo |
+| 3. Logística y satisfacción | Puntualidad de la entrega y calificación | 🚧 Pendiente |
+
+### Página 1: Resumen de ventas
+
+![Dashboard: resumen de ventas](docs/images/dashboard_resumen.png)
 
 ## 12. Cómo reproducir el proyecto
 
@@ -302,6 +318,12 @@ Consulta: [`sql/08_logistica.sql`](sql/08_logistica.sql)
    python scripts/load_data.py
    ```
 5. Abre `olist.db` con DB Browser for SQLite y ejecuta las consultas de la carpeta `sql/`.
+6. (Opcional) Abre `notebooks/01_analisis_ventas.ipynb` en VS Code para ver el análisis con gráficos.
+7. Exporta las tablas para el dashboard:
+   ```powershell
+   python scripts/export_for_powerbi.py
+   ```
+   Luego abre `dashboard/olist_dashboard.pbix` en Power BI Desktop. El archivo ya incluye los datos importados; para actualizarlos, apunta los orígenes a `dashboard/data/` (**Transformar datos → Configuración del origen de datos**).
 
 ## 13. Próximos pasos
 
@@ -310,7 +332,7 @@ Consulta: [`sql/08_logistica.sql`](sql/08_logistica.sql)
 - [x] Tasa de recompra y segmentación RFM
 - [x] Análisis de tiempos de entrega y calificaciones
 - [x] Análisis en Python con gráficos (notebooks)
-- [ ] Dashboard en Power BI
+- [x] Dashboard en Power BI
 - [ ] Conclusiones y recomendaciones de negocio
 
 ## 14. Autor
